@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMedia - Digital Moves That Matter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ADB5;
+            --dark: #222831;
+            --light: #EEEEEE;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 173, 181, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: #f9f9f9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 173, 181, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: #666;
+        }
+        
+        /* Why Choose Us Section */
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .feature-icon {
+            color: var(--primary);
+            font-size: 24px;
+            margin-top: 5px;
+        }
+        
+        .feature-text h3 {
+            margin-bottom: 10px;
+        }
+        
+        .feature-text p {
+            color: #666;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+        
+        .cta .btn {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        .cta .btn:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+        
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-logo span {
+            color: var(--primary);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: #aaa;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #aaa;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                text-align: center;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+            }
+        }
+
+/* Testimonials Section - Enhanced */
+.testimonials {
+    background-color: #f5fdfe; /* Light teal tint */
+}
+
+.testimonials .section-title p {
+    color: #555;
+    margin-top: 10px;
+}
+
+.industry-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    background: rgba(0, 173, 181, 0.1);
+    color: var(--primary);
+}
+
+.industry-tag.beauty { background: rgba(255, 105, 180, 0.1); color: #ff69b4; }
+.industry-tag.food { background: rgba(76, 187, 23, 0.1); color: #4cbb17; }
+.industry-tag.ecommerce { background: rgba(255, 165, 0, 0.1); color: #ffa500; }
+.industry-tag.ngo { background: rgba(100, 65, 165, 0.1); color: #6441a5; }
+.industry-tag.tech { background: rgba(0, 116, 217, 0.1); color: #0074d9; }
+
+.results-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: rgba(0, 173, 181, 0.08);
+    border-radius: 5px;
+    font-size: 13px;
+    color: var(--dark);
+}
+
+.results-badge i {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+.testimonial-cta-card {
+    background: linear-gradient(135deg, var(--primary), #008e96);
+    color: white;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.testimonial-cta-card h3 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.testimonial-cta-card p {
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.btn-white {
+    background: white;
+    color: var(--primary);
+}
+
+.btn-white:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">M<span>Media</span></a>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Digital Moves That Matter</h1>
+                <p class="fade-in delay-1">We craft innovative digital marketing strategies that drive real results and help your brand stand out in the digital landscape.</p>
+                <a href="#contact" class="btn fade-in delay-2">Let's Grow Your Brand</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About MMedia</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Your Partner in Digital Success</h3>
+                    <p>MMedia is your go-to partner for creative and results-driven digital marketing strategies. We help brands boost visibility, connect with their audience, and drive real growth.</p>
+                    <p>Our team of experts combines creativity with data-driven approaches to deliver marketing solutions that make an impact. Whether you're a startup or an established business, we tailor our services to meet your unique needs.</p>
+                    <a href="#services" class="btn btn-outline">Our Services</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team working on digital marketing">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3>Social Media Management</h3>
+                    <p>Comprehensive management of your social media presence including content strategy, community engagement, and performance tracking.</p>
+                </div>
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Content Creation</h3>
+                    <p>High-quality graphics, compelling captions, and strategic scheduling to keep your audience engaged and growing.</p>
+                </div>
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3>Paid Ads</h3>
+                    <p>Targeted advertising campaigns on Facebook and Instagram to reach your ideal customers and maximize ROI.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO & Website Optimization</h3>
+                    <p>Improve your website's visibility in search results and optimize user experience to convert visitors into customers.</p>
+                </div>
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <h3>Digital Strategy</h3>
+                    <p>Comprehensive brand consulting to develop a digital roadmap that aligns with your business goals and objectives.</p>
+                </div>
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Detailed performance tracking and insights to measure success and continuously optimize your digital presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose MMedia</h2>
+            </div>
+            <div class="features-list">
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Affordable Packages</h3>
+                        <p>We offer competitive pricing with packages tailored to fit businesses of all sizes and budgets.</p>
+                    </div>
+                </div>
+                <div class="feature-item fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Quick Turnaround</h3>
+                        <p>We value your time and deliver results quickly with responsive communication throughout the process.</p>
+                    </div>
+                </div>
+                <div class="feature-item fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Measurable Results</h3>
+                        <p>Our strategies are focused on delivering tangible, data-driven outcomes that impact your bottom line.</p>
+                    </div>
+                </div>
+                <div class="feature-item fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Passionate Team</h3>
+                        <p>We're creative, dedicated professionals who genuinely care about your brand's success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="section testimonials">
+    <div class="container">
+        <div class="section-title">
+            <h2>Success Stories From Kenyan Businesses</h2>
+            <p>Hear what our clients across industries have to say</p>
+        </div>
+        
+        <div class="testimonials-grid">
+            <!-- Beauty Industry -->
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-content">
+                    <div class="industry-tag beauty">
+                        <i class="fas fa-cut"></i> Beauty
+                    </div>
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">"MMedia helped me transform my salon's Instagram page. Within two months, my bookings doubled and I've been getting more referrals through DMs. Their content ideas are always fresh!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Angela N.</h4>
+                            <p>Founder of Angie's Hair Studio, Nairobi</p>
+                            <div class="results-badge">
+                                <i class="fas fa-chart-line"></i> 2x more bookings
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Industry -->
+            <div class="testimonial-card fade-in delay-1">
+                <div class="testimonial-content">
+                    <div class="industry-tag food">
+                        <i class="fas fa-utensils"></i> Food & Beverage
+                    </div>
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">"As a small bakery owner, I didn't have time to manage my social media. MMedia stepped in and now my Facebook page is always active, professional, and attracting new clients. I love their work!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Brian Otieno</h4>
+                            <p>CEO at Sweet Bites Bakery, Kisumu</p>
+                            <div class="results-badge">
+                                <i class="fas fa-users"></i> Consistent client growth
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-commerce -->
+            <div class="testimonial-card fade-in delay-2">
+                <div class="testimonial-content">
+                    <div class="industry-tag ecommerce">
+                        <i class="fas fa-shopping-bag"></i> E-commerce
+                    </div>
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">"I was skeptical at first, but MMedia really impressed me. They handled my branding and helped me run my first Instagram ad campaign—my products sold out in under a week."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Mercy Wanjiku</h4>
+                            <p>Online Thrift Store Owner</p>
+                            <div class="results-badge">
+                                <i class="fas fa-fire"></i> Sold out in 7 days
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Testimonials Row -->
+        <div class="testimonials-grid" style="margin-top: 30px;">
+            <!-- NGO -->
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-content">
+                    <div class="industry-tag ngo">
+                        <i class="fas fa-hands-helping"></i> NGO
+                    </div>
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">"Our NGO needed visibility, and MMedia delivered beyond expectations. They created a content plan, optimized our social media, and helped us get featured by local blogs. Highly professional team."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Daniel K.</h4>
+                            <p>Communications Lead at Jali Africa Foundation</p>
+                            <div class="results-badge">
+                                <i class="fas fa-bullhorn"></i> Media features secured
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech -->
+            <div class="testimonial-card fade-in delay-1">
+                <div class="testimonial-content">
+                    <div class="industry-tag tech">
+                        <i class="fas fa-laptop-code"></i> Technology
+                    </div>
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">"The team at MMedia is responsive, creative, and truly understands digital marketing. They helped us with SEO and social media content, and we've seen steady growth in website traffic."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Faith Mwende</h4>
+                            <p>Digital Coordinator at KeGreenTech Solutions</p>
+                            <div class="results-badge">
+                                <i class="fas fa-arrow-up"></i> Traffic growth
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Card -->
+            <div class="testimonial-cta-card fade-in delay-2">
+                <div class="cta-content">
+                    <h3>Ready for your success story?</h3>
+                    <p>Join hundreds of Kenyan businesses growing with MMedia</p>
+                    <a href="#contact" class="btn btn-white">Get Started Today</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="fade-in">Ready to Elevate Your Brand?</h2>
+            <a href="#contact" class="btn fade-in delay-1">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-form">
+                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="_replyto" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">M<span>Media</span></div>
+                    <p>Digital marketing solutions that drive growth and create meaningful connections between brands and their audiences.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#why-us">Why Choose Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> mmediaagency@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Maseno, Kisumu</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MMedia. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+            
+            // Mobile menu toggle
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenu.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (navLinks.style.display === 'flex') {
+                            navLinks.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
